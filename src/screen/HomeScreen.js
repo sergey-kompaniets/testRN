@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { View, ScrollView, ActivityIndicator, YellowBox } from "react-native";
+import {
+  View,
+  ScrollView,
+  ActivityIndicator,
+  YellowBox,
+  RefreshControl
+} from "react-native";
 
 YellowBox.ignoreWarnings(["Remote debugger"]);
 console.ignoredYellowBox = ["Remote debugger"];
@@ -17,18 +23,27 @@ export default class HomeScreen extends Component {
     super(props);
 
     this.state = {
-      title: "TITLE",
+      title: "HOME",
       data: [],
       visibleSB: false,
       search: "",
-      loading: false
+      loading: false,
+      refreshing: false
     };
   }
 
-  componentDidMount = async () => {
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData = async () => {
     try {
       const response = await fetch(url, {
-        method: "POST"
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
       });
       const data = await response.json();
       this.setState({ loading: true, data });
@@ -36,6 +51,13 @@ export default class HomeScreen extends Component {
       return e;
     }
   };
+
+  onRefresh() {
+    this.setState({ refreshing: true });
+    this.fetchData().then(() => {
+      this.setState({ refreshing: false });
+    });
+  }
 
   updateSearch = e => {
     this.setState({ search: e.substr(0, 20) });
@@ -45,11 +67,9 @@ export default class HomeScreen extends Component {
     const { title, visibleSB } = this.state;
     const { navigation } = this.props;
     const filteredData = this.state.data.filter(item => {
-      console.log(
-        item.title.toLowerCase().indexOf(this.state.search.toLowerCase())
+      return (
+        item.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
       );
-
-      return item.title.indexOf(this.state.search) !== -1;
     });
 
     return (
@@ -76,7 +96,14 @@ export default class HomeScreen extends Component {
           />
         )}
 
-        <ScrollView>
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this.onRefresh.bind(this)}
+            />
+          }
+        >
           <Layout>
             {!this.state.loading ? (
               <ActivityIndicator size="large" />

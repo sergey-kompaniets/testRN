@@ -5,13 +5,13 @@ import { w } from "../../dms";
 
 const ImageCard = ({ data, onPress }) => {
   const { container, sub, h1, cover } = styles;
-  const { image, title } = data;
+  const { img, title } = data;
 
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={container}>
         <View style={sub}>
-          <Image style={cover} source={{ uri: image }} />
+          <Image style={cover} source={{ uri: img }} />
         </View>
         <Text style={h1}>{title.toUpperCase()}</Text>
       </View>
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   sub: {
     shadowColor: "#000",
     borderRadius: 10,
-    backgroundColor: "#ccc",
+    backgroundColor: "#BDBDBD",
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.4

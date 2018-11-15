@@ -2,14 +2,12 @@ import React, { PureComponent } from "react";
 import { View, ScrollView, Text, StyleSheet, Button } from "react-native";
 import Header from "../components/Header";
 import FullImage from "../components/FullImage";
-import { HOME } from "../routes";
 
 import { w } from "../../dms";
 
 export default class DetailsScreen2 extends PureComponent {
   render() {
     const { item } = this.props.navigation.state.params;
-    console.log(this.props.navigation.state.params);
     const { navigation } = this.props;
     const { container, sub, h1, h2 } = styles;
 
@@ -23,11 +21,11 @@ export default class DetailsScreen2 extends PureComponent {
         />
         <ScrollView>
           <View style={sub}>
-            <FullImage data={item.image} />
+            <FullImage data={item.img} />
             <Button
-              onPress={() => navigation.navigate(HOME)}
-              title="Home"
-              color="#841584"
+              onPress={() => navigation.goBack()}
+              title="HOME"
+              color="#009688"
             />
             <Text style={h1}>{item.title.toUpperCase()}</Text>
             <Text style={h2}>{item.description.replace(/<[^>]+>/g, "")}</Text>

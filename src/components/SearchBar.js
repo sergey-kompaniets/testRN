@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     elevation: 2,
-    backgroundColor: "#30d0fe",
+    backgroundColor: "#FF5722",
     position: "relative",
     ...ifIphoneX(
       {
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   searchStyle: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#ccc",
+    backgroundColor: "#009688",
     height: 40,
     width: 40,
     borderRadius: 20

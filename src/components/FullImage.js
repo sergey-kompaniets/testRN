@@ -2,13 +2,13 @@ import React from "react";
 import { Image, View, StyleSheet } from "react-native";
 import { w } from "../../dms";
 
-const FullImage = ({ image }) => {
+const FullImage = ({ data }) => {
   const { container, sub, cover } = styles;
 
   return (
     <View style={container}>
       <View style={sub}>
-        <Image style={cover} source={{ uri: image }} />
+        <Image style={cover} source={{ uri: data }} />
       </View>
     </View>
   );
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   sub: {
     shadowColor: "#000",
     borderRadius: 10,
-    backgroundColor: "#ccc",
+    backgroundColor: "#BDBDBD",
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.7

@@ -8,7 +8,6 @@ import { w } from "../../dms";
 export default class DetailsScreen extends PureComponent {
   render() {
     const { item } = this.props.navigation.state.params;
-    console.log(this.props.navigation.state.params);
     const { navigation } = this.props;
     const { container, sub, h1, h2 } = styles;
 
@@ -22,11 +21,11 @@ export default class DetailsScreen extends PureComponent {
         />
         <ScrollView>
           <View style={sub}>
-            <FullImage data={item.image} />
+            <FullImage data={item.img} />
             <Button
               onPress={() => navigation.goBack()}
-              title="Home"
-              color="#841584"
+              title="HOME"
+              color="#009688"
             />
             <Text style={h1}>{item.title.toUpperCase()}</Text>
             <Text style={h2}>{item.description.replace(/<[^>]+>/g, "")}</Text>

@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     elevation: 2,
     paddingHorizontal: 20,
-    backgroundColor: "#30d0fe",
+    backgroundColor: "#FF5722",
     position: "relative",
     ...ifIphoneX(
       {
